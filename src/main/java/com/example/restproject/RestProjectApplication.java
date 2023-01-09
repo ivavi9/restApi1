@@ -1,0 +1,16 @@
+package com.example.restproject;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.UUID;
+
+@SpringBootApplication
+public class RestProjectApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(RestProjectApplication.class, args);
+    }
+
+}
+
