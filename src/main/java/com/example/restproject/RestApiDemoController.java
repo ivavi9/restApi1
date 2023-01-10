@@ -1,5 +1,9 @@
 package com.example.restproject;
 
+import jakarta.annotation.PostConstruct;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
@@ -13,18 +17,12 @@ import java.util.Optional;
 @RequestMapping("/coffees")
 public class RestApiDemoController {
 
-
     private final CoffeeRepository coffeeRepository;
 
-    public RestApiDemoController(CoffeeRepository coffeeRepository){
+    public RestApiDemoController(CoffeeRepository coffeeRepository) {
         this.coffeeRepository = coffeeRepository;
-        this.coffeeRepository.saveAll(List.of(
-                new Coffee("Americano"),
-                new Coffee("Cappacino"),
-                new Coffee("Cortado"),
-                new Coffee("Indian")
-        ));
     }
+
 
 
 
@@ -61,3 +59,27 @@ public class RestApiDemoController {
 
 
 }
+
+
+@Component
+class DataLoader {
+
+    private final CoffeeRepository coffeeRepository;
+
+    public DataLoader(CoffeeRepository coffeeRepository){
+        this.coffeeRepository = coffeeRepository;
+
+    }
+
+    @PostConstruct
+    private void loadData(){
+        coffeeRepository.saveAll(List.of(
+                new Coffee("Americano"),
+                new Coffee("Cappacino"),
+                new Coffee("Cortado"),
+                new Coffee("Indian")
+        ));
+    }
+
+}
+
