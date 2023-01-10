@@ -1,11 +1,22 @@
 package com.example.restproject;
 
-import java.util.UUID;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
-class Coffee {
-    private final String id;
+import java.util.UUID;
+@Entity
+public class Coffee {
+    @Id
+    private String id;
     private String name;
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Coffee(){
+
+    }
     public Coffee(String name) {
         this(UUID.randomUUID().toString(),name);
     }
